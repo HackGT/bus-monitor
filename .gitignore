@@ -1,0 +1,8 @@
+# Config file
+config.yaml
+
+# Python compiled bytecode
+*.pyc
+
+# Virtual Environment
+venv
