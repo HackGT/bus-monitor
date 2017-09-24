@@ -1,0 +1,6 @@
+git:
+    remote: https://github.com/HackGT/bus-monitor.git
+    branch: master
+
+target_port: 5000
+
