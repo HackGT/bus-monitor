@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Bus Monitor | HackGT 4</title>
+    </head>
+    <body>
+        <h1>HackGT 4 Bus Monitoring Service</h1>
+        {% for bus in buses %}
+        <h2>Bus: {{ bus[0] }}</h2>
+        <form action="export" method="POST">
+            <input name="bus" type="text" value="{{ bus[0] }}" readonly hidden/>
+            <input type="submit" value="CSV Export"/>
+        </form>
+        <table>
+            <tr>
+                <th>Confirm Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>School</th>
+            </tr>
+            {% for rider in bus[1] %}
+            <tr>
+                <td>{{ rider['confirmationDate'] }}</td>
+                <td>{{ rider['name'] }}</td>
+                <td>{{ rider['email'] }}</td>
+                <td>{{ rider['school'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </ul>
+        {% endfor %}
+    </body>
+</html>

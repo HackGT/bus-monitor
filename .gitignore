@@ -1,5 +1,5 @@
 # Config file
-config.yaml
+config.ini
 
 # Python compiled bytecode
 *.pyc
