@@ -2,30 +2,39 @@
 <html lang="en">
     <head>
         <title>Bus Monitor | HackGT 4</title>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"/>
     </head>
     <body>
-        <h1>HackGT 4 Bus Monitoring Service</h1>
+        <h1>HackGT 4 Bus Monitor</h1>
+        <p>
+            NOTE: This is not a long term solution (just a stopgap for HackGT 4).
+        </p>
         {% for bus in buses %}
-        <h2>Bus: {{ bus[0] }}</h2>
+        <h2>Bus: {{ bus[0] }} ({{ bus[1] | length }} RSVP)</h2>
         <form action="export" method="POST">
             <input name="bus" type="text" value="{{ bus[0] }}" readonly hidden/>
-            <input type="submit" value="CSV Export"/>
+            <input class="pure-button" type="submit" value="CSV Export"/>
         </form>
-        <table>
-            <tr>
-                <th>Confirm Date</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>School</th>
-            </tr>
+        <table class="bus-riders pure-table pure-table-striped pure-table-horizontal">
+            <thead>
+                <tr>
+                    <th>Confirm Date</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>School</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for rider in bus[1] %}
-            <tr>
-                <td>{{ rider['confirmationDate'] }}</td>
-                <td>{{ rider['name'] }}</td>
-                <td>{{ rider['email'] }}</td>
-                <td>{{ rider['school'] }}</td>
-            </tr>
+                <tr>
+                    <td>{{ rider['confirmationDate'] }}</td>
+                    <td>{{ rider['name'] }}</td>
+                    <td>{{ rider['email'] }}</td>
+                    <td>{{ rider['school'] }}</td>
+                </tr>
             {% endfor %}
+            </tbody>
         </table>
         </ul>
         {% endfor %}
