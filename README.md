@@ -1,5 +1,15 @@
 # bus-monitor
 
+**DISCLAIMER**:
+This is a simple, stopgap solution to view current RSVPS for buses.
+This is NOT a long term solution - a future project should utilize an API
+to query registration rather than:
+ - direct database access
+ - bespoke database queries which are brittle to schema changes
+
+That said, this does _work_ and we don't have to manually query the database
+for this info anymore. Yay! :fireworks:
+
 ## Installation and Setup
 
 ### Requirements
