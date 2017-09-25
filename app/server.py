@@ -2,6 +2,7 @@ import csv
 import io
 
 from app.db import CONNECTION as db
+from app.auth import requires_auth
 
 from flask import Flask, render_template, request, make_response
 app = Flask(__name__)
@@ -27,6 +28,7 @@ def mapUser(user):
     }
 
 @app.route('/')
+@requires_auth
 def dashboard():
     buses = {}
     for user in getBusRiders():
@@ -39,6 +41,7 @@ def dashboard():
     return render_template('dashboard.html', buses=list(buses.items()))
 
 @app.route('/export', methods=['POST'])
+@requires_auth
 def exportBus():
     bus = str(request.form['bus'])
     riders = [mapUser(rider) for rider in getBusRiders({

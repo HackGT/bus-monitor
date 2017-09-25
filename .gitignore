@@ -1,5 +1,6 @@
-# Config file
+# Config and secrets file
 config.ini
+secrets.ini
 
 # Python compiled bytecode
 *.pyc
