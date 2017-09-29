@@ -25,7 +25,8 @@ def mapUser(user):
         'confirmationDate': user['confirmationSubmitTime'],
         'name': user['name'],
         'email': user['email'],
-        'school': getValue(user['applicationData'], 'school') if user['applicationBranch'] == 'Participant' else getValue(user['applicationData'], 'school-if-student')
+        'school': getValue(user['applicationData'], 'school') if user['applicationBranch'] == 'Participant' else getValue(user['applicationData'], 'school-if-student'),
+        'applicationBranch': user['applicationBranch']
     }
 
 @app.route('/')
@@ -54,7 +55,7 @@ def exportBus():
         }
     })]
     si = io.StringIO()
-    cw = csv.DictWriter(si, fieldnames=['confirmationDate', 'name', 'email', 'school'])
+    cw = csv.DictWriter(si, fieldnames=['confirmationDate', 'name', 'email', 'school', 'applicationBranch'])
     cw.writeheader()
     cw.writerows(riders)
     output = make_response(si.getvalue())
