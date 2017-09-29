@@ -8,7 +8,8 @@ from flask import Flask, render_template, request, make_response
 app = Flask(__name__)
 
 def getValue(data, key):
-    return list(filter(lambda d: d['name'] == key, data))[0]['value']
+    values = list(filter(lambda d: d['name'] == key, data))
+    return values[0]['value'] if len(values) > 0 else None
 
 def getBusRiders(query={}):
     return db.users.find({
@@ -24,7 +25,7 @@ def mapUser(user):
         'confirmationDate': user['confirmationSubmitTime'],
         'name': user['name'],
         'email': user['email'],
-        'school': getValue(user['applicationData'], 'school')
+        'school': getValue(user['applicationData'], 'school') if user['applicationBranch'] == 'Participant' else getValue(user['applicationData'], 'school-if-student')
     }
 
 @app.route('/')
