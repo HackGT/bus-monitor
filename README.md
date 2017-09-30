@@ -36,5 +36,5 @@ stored elsewhere you can set environment variables to their respective paths.
 | `BUS_MONITOR_SECRETS` | path to secrets file (see `secrets.example.ini`) |
 
 ### Start!
-- `export FLASK_APP=server/app.py`
+- `export FLASK_APP=app/server.py`
 - `flask run` or `python -m flask run`
